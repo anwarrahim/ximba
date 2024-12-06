@@ -1,6 +1,6 @@
 
 
-import { tweetsData } from "/data.js"
+import { tweetsData } from "./data.js"
 
 
 const tweetBtn = document.getElementById("tweet-btn")
