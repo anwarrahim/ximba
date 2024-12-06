@@ -34,6 +34,8 @@ main, header{
 
 header{
     padding-bottom: 25px;
+    margin-top: 20px;
+    font-size: 40px;
 }
 
 .tweet-input-area {
