@@ -1,17 +1,11 @@
-/*
-Challenge:
-1. Put all of the data in its own file called
-   data.js, and export it back into index.js.
-   Make any changes to index.html that are
-   necessary to make this work.
-2. Log out tweetsData.
-*/
+
 
 import { tweetsData } from "/data.js"
 
 
 const tweetBtn = document.getElementById("tweet-btn")
 const tweetInput = document.getElementById("tweet-input")
+const feedDiv = document.getElementById('feed')
 
 tweetBtn.addEventListener('click', function(){
 
@@ -54,5 +48,10 @@ function getFeedHtml(){
     return feedHtml
 }
 
-getFeedHtml()
+function render(){
+
+  feedDiv.innerHTML =  getFeedHtml()
+}
+
+render()
 
