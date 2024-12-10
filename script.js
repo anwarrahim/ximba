@@ -33,6 +33,7 @@ function getFeedHtml(){
                  
                     </span>
                             <span class="tweet-detail">
+                            ${<i class="fa-regular fa-comment-dots"></i>}
                         ${tweetData.likes}
                     </span>
                             <span class="tweet-detail">
