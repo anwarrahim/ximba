@@ -28,6 +28,7 @@ function getFeedHtml(){
                         <p class="tweet-text">${tweetData.tweetText}</p>
                         <div class="tweet-details">
                     <span class="tweet-detail">
+                    ${<i class="fa-regular fa-comment-dots"></i>}
                         ${tweetData.replies.length}
                  
                     </span>
