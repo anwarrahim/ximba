@@ -21,11 +21,13 @@ document.addEventListener('click', function(e){
     else if(e.target.dataset.retweet){
         handleRetweetClick(e.target.dataset.retweet)
     }
+    // else if (e.target.dataset.reply){
+    //     handleCommentClick(e.target.dataset.reply)
+    // }
 
 })
 
 function handleLikeClick(tweetId){
-
     const targetTweetObj = tweetsData.filter(function(tweetData){
       return tweetData.uuid === tweetId
   })[0]
@@ -75,6 +77,14 @@ function handleRetweetClick(tweetId){
    render()
 }
 
+function handleReplyClick(replyId){
+    const targetTweetObj = tweetsData.filter(function(tweetData){
+        return tweetData.uuid === replyId
+        
+    })[0]
+    console.log(targetTweetObj)
+}
+
 function getFeedHtml(){
     let feedHtml = ` `
     tweetsData.forEach(function(tweetData){
@@ -86,6 +96,43 @@ function getFeedHtml(){
         }
         if (tweetData.isRetweeted){
             retweetIconClass = 'retweeted'
+        }
+
+
+
+        let repliesHtml = ` `
+
+        if (tweetData.replies.length > 0) {
+
+            tweetData.replies.forEach(function(reply){
+                repliesHtml += `<div class="tweet-reply">
+                <div class="tweet-inner">
+                    <img src="${reply.profilePic}" class="profile-pic">
+                        <div>
+                            <p class="handle">${reply.handle}</p>
+                            <p class="tweet-text">${reply.tweetText}</p>
+                        </div>
+                    </div>
+            </div>`
+            })
+          
+            /*
+            Challenge:
+            1. If a tweet has replies, iterate through the replies
+               and wrap each one in the HTML template provided below. 
+               Make sure to replace words in UPPERCASE with data from 
+               the tweet. On each iteration, add this HTML to repliesHtml.
+               
+            <div class="tweet-reply">
+                <div class="tweet-inner">
+                    <img src="PROFILE PIC" class="profile-pic">
+                        <div>
+                            <p class="handle">HANDLE</p>
+                            <p class="tweet-text">TWEET TEXT</p>
+                        </div>
+                    </div>
+            </div>
+            */
         }
           
 
@@ -112,6 +159,9 @@ function getFeedHtml(){
                         </div>
                     </div>
                 </div>
+             <div id="replies-${tweetData.uuid}">
+        ${repliesHtml}
+    </div>   
         </div>`
 
         }
