@@ -12,34 +12,44 @@ tweetBtn.addEventListener('click', function(){
     tweetInput.value = ' '
 
 })
+
+
 document.addEventListener('click', function(e){
     if (e.target.dataset.like){
 
         handleLikeClick(e.target.dataset.like)
-    }
-   
-   
+    } 
 })
 
 function handleLikeClick(tweetId){
-  console.log(tweetId)
-    /*
-   Challenge:
-   1. Iterate over tweetsData and use the uuid 
-      saved in tweetId to identify the liked
-      tweet's object. Save that object to a 
-      new const called 'targetTweetObj'.
-   ⚠️ targetTweetObj should hold an object, NOT
-      an array.
-   2. Increment targetTweetObj's 'likes' count 
-      by 1.
-   3. Log out targetTweetObj.
-   */
+
     const targetTweetObj = tweetsData.filter(function(tweetData){
-        if(tweetData.uuid == tweetId){
-        targetTweetObj.forEach(tweetData)
-        }
-  })
+      return tweetData.uuid === tweetId
+  })[0]
+
+    /*
+    Challenge:
+    1. When a tweet is liked, it's 'isLiked' property
+       should be set to true.
+    2. When a tweet is unliked, it's 'isLiked' property
+       should be set to false and its 'likes' count
+       should be decremented.
+    */ 
+   if(targetTweetObj.likes){
+       targetTweetObj.isLiked = true
+       targetTweetObj.likes++
+      
+   }
+    else if(targetTweetObj.isLiked = true) {
+        targetTweetObj.isLiked = false
+        targetTweetObj.likes--
+    }
+
+
+   console.log(targetTweetObj)
+
+
+  render()
 
 
 
