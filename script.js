@@ -16,9 +16,12 @@ tweetBtn.addEventListener('click', function(){
 
 document.addEventListener('click', function(e){
     if (e.target.dataset.like){
-
         handleLikeClick(e.target.dataset.like)
-    } 
+    }
+    else if(e.target.dataset.retweet){
+        handleRetweetClick(e.target.dataset.retweet)
+    }
+
 })
 
 function handleLikeClick(tweetId){
@@ -35,24 +38,41 @@ function handleLikeClick(tweetId){
        should be set to false and its 'likes' count
        should be decremented.
     */ 
-   if(targetTweetObj.likes){
-       targetTweetObj.isLiked = true
-       targetTweetObj.likes++
-      
+   if(targetTweetObj.isLiked){
+       targetTweetObj.likes--
+  
    }
-    else if(targetTweetObj.isLiked = true) {
-        targetTweetObj.isLiked = false
-        targetTweetObj.likes--
+    else{
+        targetTweetObj.likes++
     }
-
-
-   console.log(targetTweetObj)
+// changine false into true and viseversa
+   targetTweetObj.isLiked = !targetTweetObj.isLiked
 
 
   render()
 
+}
+
+function handleRetweetClick(tweetId){
+ 
+    // Now i have to filter this to check the clicked id is in which tweet data...
+
+    const targetTweetObj = tweetsData.filter(function(tweetData){
+       return tweetData.uuid === tweetId
+    })[0]
+   
+    if (targetTweetObj.isRetweeted) {
+        targetTweetObj.retweets--
+    }
+    else {
+        targetTweetObj.retweets++
+    }
+
+    targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted
 
 
+
+   render()
 }
 
 function getFeedHtml(){
